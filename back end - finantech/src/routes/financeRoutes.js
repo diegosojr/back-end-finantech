@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const financeController = require("../controllers/financeController");
-const authMiddleware = require("../../middlewares/auth"); 
+const auth = require("../middlewares/auth"); 
 
-router.post("/transaction", authMiddleware, financeController.createTransaction);
-router.post("/goal", authMiddleware, financeController.createGoal);
-router.get("/dashboard", authMiddleware, financeController.getDashboard);
+router.post("/transaction", auth, financeController.createTransaction);
+router.post("/goal", auth, financeController.createGoal);
+router.get("/dashboard", auth, financeController.getDashboard);
 
 module.exports = router;

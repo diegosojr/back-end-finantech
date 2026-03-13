@@ -3,13 +3,13 @@ const conectdb = require("./src/config/db");
 const { graphqlHTTP } = require("express-graphql");
 const schema = require("./src/graphql/schema");
 const resolvers = require("./src/graphql/resolvers");
-const authMiddleware = require("./middlewares/auth"); 
+const auth = require("./src/middlewares/auth");
 
 const app = express();
 conectdb();
 app.use(express.json());
 
-app.use("/graphql", authMiddleware, graphqlHTTP((req) => ({
+app.use("/graphql", auth, graphqlHTTP((req) => ({
   schema: schema,
   rootValue: resolvers,
   graphiql: true,
