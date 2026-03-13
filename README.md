@@ -1,46 +1,42 @@
-FinanTech – Backend de Gestão Financeira
-📌 Sobre o Projeto
+# FinanTech – Backend de Gestão Financeira
 
-O FinanTech é uma API backend desenvolvida para gerenciamento financeiro pessoal. A aplicação permite que usuários registrem receitas, despesas e metas financeiras, além de visualizar um dashboard consolidado com o resumo das movimentações financeiras.
+## Sobre o Projeto
 
-O projeto foi desenvolvido com o objetivo de aplicar conceitos fundamentais de desenvolvimento de backend para aplicações web, incluindo:
+A **FinanTech** é uma aplicação backend desenvolvida para gerenciamento financeiro pessoal. O sistema permite que usuários registrem **receitas, despesas e metas financeiras**, além de visualizar um **dashboard consolidado** com o resumo das movimentações e o saldo disponível.
 
-Validação de dados
+O projeto foi desenvolvido como atividade acadêmica com o objetivo de aplicar conceitos fundamentais de **desenvolvimento de APIs modernas**, incluindo:
 
-Relacionamento entre entidades
+* Desenvolvimento de **backend para aplicações web**
+* **Validação de dados**
+* **Relacionamento entre entidades**
+* **Autenticação e segurança com JWT**
+* Implementação de **interfaces RESTful**
+* Implementação de **interface GraphQL**
 
-Autenticação e segurança utilizando JWT
+A aplicação foi construída utilizando **Node.js**, **Express**, **MongoDB** e **Mongoose**, tecnologias amplamente utilizadas no desenvolvimento de APIs escaláveis e modernas.
 
-Implementação de API RESTful
+---
 
-Implementação de interface GraphQL
+# Objetivo do Sistema
 
-A aplicação foi construída utilizando Node.js, Express, MongoDB e Mongoose, tecnologias amplamente utilizadas no desenvolvimento de APIs modernas.
+O sistema permite que cada usuário autenticado possa:
 
-🎯 Funcionalidades do Sistema
+* Registrar **receitas financeiras** (salário, freelance, investimentos, etc.)
+* Registrar **despesas financeiras**
+* Criar **metas financeiras**
+* Visualizar um **dashboard com o resumo financeiro**
 
-A API permite que usuários autenticados possam:
+Todas as operações são vinculadas ao usuário autenticado, garantindo que cada pessoa visualize apenas suas próprias informações.
 
-Criar conta no sistema
+---
 
-Fazer login e receber um token JWT
+# Arquitetura do Projeto
 
-Registrar receitas financeiras
+O backend foi estruturado seguindo uma arquitetura organizada baseada em **camadas**, separando responsabilidades entre rotas, controladores, modelos e configurações.
 
-Registrar despesas financeiras
+### Estrutura de pastas
 
-Criar metas financeiras
-
-Visualizar um dashboard financeiro consolidado
-
-Realizar operações através de REST API e GraphQL
-
-Todas as operações financeiras são vinculadas ao usuário autenticado.
-
-🧱 Estrutura do Projeto
-
-A aplicação segue uma arquitetura modular organizada por responsabilidades.
-
+```
 back-end-finantech
 │
 ├── node_modules
@@ -73,189 +69,304 @@ back-end-finantech
 ├── package.json
 ├── package-lock.json
 └── .gitignore
-⚙️ Tecnologias Utilizadas
-Node.js
+```
 
-Ambiente de execução JavaScript utilizado para o backend.
+---
 
-Express.js
+# Tecnologias Utilizadas
 
-Framework responsável pela criação das rotas da API REST.
+### Node.js
 
-MongoDB
+Ambiente de execução JavaScript utilizado para desenvolvimento do backend.
 
-Banco de dados NoSQL utilizado para armazenamento das informações.
+### Express.js
 
-Mongoose
+Framework utilizado para criação das **rotas RESTful da API**, gerenciamento de requisições HTTP e organização do servidor.
 
-Biblioteca utilizada para modelagem de dados e interação com o MongoDB.
+### MongoDB
 
-JSON Web Token (JWT)
+Banco de dados **NoSQL orientado a documentos**, utilizado para armazenamento das informações da aplicação.
 
-Responsável pela autenticação e segurança das rotas protegidas da API.
+### Mongoose
 
-GraphQL
+Biblioteca utilizada para modelagem dos dados no MongoDB, permitindo:
 
-Interface adicional para manipulação e consulta de dados com maior flexibilidade.
+* definição de **schemas**
+* validação de dados
+* relacionamento entre entidades
 
-BcryptJS
+### JWT (JSON Web Token)
 
-Utilizado para criptografia de senhas antes de serem armazenadas no banco de dados.
+Utilizado para garantir **segurança e autenticação de usuários**.
 
-🔐 Autenticação e Segurança
+Após o login, o usuário recebe um **token JWT**, que deve ser enviado nas requisições protegidas para acessar funcionalidades financeiras.
 
-O sistema utiliza JWT (JSON Web Token) para autenticação.
+### GraphQL
 
-Após realizar login, o usuário recebe um token que deve ser enviado nas requisições protegidas.
+Interface adicional de consulta de dados que permite:
 
-Exemplo de Header:
+* consultas mais flexíveis
+* criação de transações através de **mutations**
+* retorno apenas dos campos necessários
 
+### Express Validator
+
+Utilizado para realizar **validação de dados de entrada**, garantindo integridade e segurança.
+
+### BcryptJS
+
+Biblioteca utilizada para **criptografia de senhas** antes de armazená-las no banco de dados.
+
+---
+
+# Segurança da Aplicação
+
+A segurança da aplicação é implementada através de:
+
+### Criptografia de senha
+
+As senhas são criptografadas utilizando **bcrypt** antes de serem armazenadas no banco.
+
+### Autenticação JWT
+
+Após o login, o sistema gera um token JWT contendo o **ID do usuário autenticado**.
+
+Esse token deve ser enviado no header das requisições protegidas:
+
+```
 Authorization: Bearer TOKEN
+```
 
-Esse token permite que o sistema identifique qual usuário está realizando as operações financeiras.
+Assim, o sistema consegue identificar qual usuário está realizando a operação.
 
-🧩 Entidades do Sistema
-Usuário (User)
+---
 
-Responsável pelo acesso ao sistema.
+# Entidades do Sistema
+
+### Usuário (User)
+
+Responsável pela autenticação no sistema.
 
 Campos principais:
 
-name
+* name
+* email
+* password
 
-email
+---
 
-password
-
-Transação (Transaction)
+### Transação (Transaction)
 
 Representa uma movimentação financeira.
 
-Campos principais:
+Pode ser:
 
-userId
-
-type (receita ou despesa)
-
-value
-
-category
-
-description
-
-date
-
-Meta (Goal)
-
-Representa um objetivo financeiro do usuário.
+* Receita
+* Despesa
 
 Campos principais:
 
-userId
+* userId
+* type
+* value
+* category
+* description
+* date
 
-name
+---
 
-value
+### Meta (Goal)
 
-deadline
+Representa um objetivo financeiro definido pelo usuário.
 
-📊 Lógica Financeira do Dashboard
+Campos principais:
 
-O dashboard financeiro calcula automaticamente:
+* userId
+* name
+* value
+* deadline
 
+---
+
+# Lógica Financeira
+
+O dashboard é calculado automaticamente com base nas informações registradas.
+
+O saldo é calculado da seguinte forma:
+
+```
 Saldo = Receitas - Despesas - Metas
+```
 
 Ou seja:
 
-Receitas aumentam o saldo
+* Receitas aumentam o saldo
+* Despesas reduzem o saldo
+* Metas reservam valores do saldo
 
-Despesas reduzem o saldo
+---
 
-Metas representam valores reservados
+### Como Executar a Aplicação
 
-🚀 Como Executar a Aplicação
-1️⃣ Clonar o Repositório
+#1️. Clonar o Repositório
+```
 git clone https://github.com/seu-repositorio/finantech.git
+```
 
 ou baixar o projeto e abrir no VS Code.
 
-2️⃣ Acessar a pasta do projeto
+#2️. Acessar a pasta do projeto
+```
 cd back-end-finantech
-3️⃣ Instalar as dependências
+```
+
+#3️. Instalar as dependências
+```
 npm install
-4️⃣ Configurar o banco de dados
+```
+
+#4️. Configurar o banco de dados
 
 Certifique-se de que o MongoDB está rodando localmente.
 
 A conexão com o banco está configurada em:
-
+```
 src/config/db.js
-5️⃣ Executar o servidor
+```
+
+#5️. Executar o servidor
 
 Para iniciar a aplicação execute:
-
+```
 node server.js
+```
 
 Após iniciar, o terminal exibirá:
-
+```
 Servidor rodando na porta 3000
-6️⃣ Acessar a API
+```
+
+#6️. Acessar a API
 
 Base URL da aplicação:
-
+```
 http://localhost:3000
-🌐 Interface GraphQL
+```
+
+###Interface GraphQL
 
 O GraphQL pode ser acessado através da URL:
-
+```
 http://localhost:3000/graphql
+```
 
 O ambiente GraphiQL será exibido para testes das queries e mutations.
 
-🧪 Testes da API – FinanTech
-1️⃣ Autenticação (Usuário)
-Cadastro de Usuário
 
+# Interfaces da API
+
+O sistema disponibiliza duas formas de interação com os dados:
+
+### API REST
+
+Rotas tradicionais HTTP utilizando métodos como:
+
+* GET
+* POST
+
+### API GraphQL
+
+Interface mais flexível para consulta e manipulação de dados através de:
+
+* Queries
+* Mutations
+
+---
+
+# Testes da API – FinanTech
+
+## 1️. Autenticação (Usuário)
+
+### Cadastro de Usuário
+
+**Método**
+
+```
 POST
+```
 
+**URL**
+
+```
 http://localhost:3000/users/register
+```
 
-Body:
+**Body (JSON)**
 
+```json
 {
   "name": "Desenvolvedor Teste",
   "email": "teste@finantech.com",
   "password": "senha123"
 }
-Login de Usuário
+```
 
+---
+
+### Login de Usuário
+
+**Método**
+
+```
 POST
+```
 
+**URL**
+
+```
 http://localhost:3000/users/login
+```
 
-Body:
+**Body (JSON)**
 
+```json
 {
   "email": "teste@finantech.com",
   "password": "senha123"
 }
+```
 
-Retorno esperado:
+Após o login, será retornado um **token JWT**, que deverá ser utilizado nas próximas requisições.
 
-token JWT
-2️⃣ Fluxo Financeiro (Requer Token)
+---
 
-Adicionar no Header:
+# 2️. Fluxo Financeiro (Requer Token)
 
+Para todas as requisições abaixo, adicionar o header:
+
+```
 Authorization: Bearer TOKEN
-Criar Receita
+```
 
+---
+
+### Criar Receita (Salário)
+
+**Método**
+
+```
 POST
+```
 
+**URL**
+
+```
 http://localhost:3000/finance/transaction
+```
 
-Body:
+**Body (JSON)**
 
+```json
 {
   "type": "receita",
   "value": 5000,
@@ -263,14 +374,27 @@ Body:
   "description": "Salário mensal",
   "date": "2026-03-12"
 }
-Criar Despesa
+```
 
+---
+
+### Criar Despesa (Aluguel)
+
+**Método**
+
+```
 POST
+```
 
+**URL**
+
+```
 http://localhost:3000/finance/transaction
+```
 
-Body:
+**Body (JSON)**
 
+```json
 {
   "type": "despesa",
   "value": 1200,
@@ -278,47 +402,88 @@ Body:
   "description": "Aluguel apto",
   "date": "2026-03-12"
 }
-Criar Meta
+```
 
+---
+
+### Criar Meta (Reserva)
+
+**Método**
+
+```
 POST
+```
 
+**URL**
+
+```
 http://localhost:3000/finance/goal
+```
 
-Body:
+**Body (JSON)**
 
+```json
 {
   "name": "Reserva de Emergência",
   "value": 500,
   "deadline": "2026-12-31"
 }
-3️⃣ Dashboard Financeiro
+```
 
+---
+
+# 3️. Dashboard e Resumo Financeiro
+
+**Método**
+
+```
 GET
+```
 
+**URL**
+
+```
 http://localhost:3000/finance/dashboard
+```
 
-Header:
+**Header**
 
+```
 Authorization: Bearer TOKEN
+```
 
-Retorno esperado:
+Essa rota retorna o resumo financeiro do usuário contendo:
 
-Total de receitas
+* Total de receitas
+* Total de despesas
+* Total de metas
+* Saldo final
 
-Total de despesas
+---
 
-Total de metas
+# 4️. Teste GraphQL
 
-Saldo final
+**Método**
 
-4️⃣ Teste GraphQL
-
+```
 POST
+```
 
+**URL**
+
+```
 http://localhost:3000/graphql
+```
 
-Body:
+**Header**
 
+```
+Authorization: Bearer TOKEN
+```
+
+**Body (GraphQL)**
+
+```graphql
 mutation {
   createTransaction(input: {
     type: "receita",
@@ -332,28 +497,21 @@ mutation {
     type
   }
 }
-📌 Conclusão
+```
 
-O FinanTech demonstra a implementação de um backend completo utilizando boas práticas de desenvolvimento, autenticação segura e múltiplas interfaces de acesso aos dados.
+---
 
-O projeto integra conceitos essenciais do desenvolvimento backend moderno, como:
+# Conclusão
 
-APIs RESTful
+O projeto **FinanTech** demonstra a construção completa de um backend moderno para aplicações web, utilizando boas práticas de desenvolvimento, separação de responsabilidades, autenticação segura e múltiplas interfaces de acesso aos dados.
 
-GraphQL
+A aplicação integra conceitos importantes do desenvolvimento backend, como:
 
-Autenticação com JWT
+* criação de APIs RESTful
+* implementação de GraphQL
+* autenticação com JWT
+* validação de dados
+* modelagem de banco de dados
+* controle de acesso por usuário
 
-Validação de dados
-
-Modelagem de banco de dados com MongoDB
-
-Organização modular do código
-
-✅ Esse README agora resolve exatamente os pontos que sua professora citou:
-
-✔ explica como executar a aplicação
-✔ mostra a estrutura correta do projeto
-✔ considera middlewares dentro de src
-✔ usa .gitignore
-✔ documenta REST + GraphQL
+Esses elementos tornam o sistema uma base sólida para aplicações financeiras reais e escaláveis.
