@@ -208,24 +208,24 @@ Ou seja:
 
 ### Como Executar a Aplicação
 
-#1️. Clonar o Repositório
+# 1️. Clonar o Repositório
 ```
 git clone https://github.com/seu-repositorio/finantech.git
 ```
 
 ou baixar o projeto e abrir no VS Code.
 
-#2️. Acessar a pasta do projeto
+# 2️. Acessar a pasta do projeto
 ```
 cd back-end-finantech
 ```
 
-#3️. Instalar as dependências
+# 3️. Instalar as dependências
 ```
 npm install
 ```
 
-#4️. Configurar o banco de dados
+# 4️. Configurar o banco de dados
 
 Certifique-se de que o MongoDB está rodando localmente.
 
@@ -234,7 +234,7 @@ A conexão com o banco está configurada em:
 src/config/db.js
 ```
 
-#5️. Executar o servidor
+# 5️. Executar o servidor
 
 Para iniciar a aplicação execute:
 ```
@@ -246,14 +246,16 @@ Após iniciar, o terminal exibirá:
 Servidor rodando na porta 3000
 ```
 
-#6️. Acessar a API
+# 6️. Acessar a API
 
 Base URL da aplicação:
 ```
 http://localhost:3000
 ```
 
-###Interface GraphQL
+---
+
+### Interface GraphQL
 
 O GraphQL pode ser acessado através da URL:
 ```
