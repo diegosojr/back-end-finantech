@@ -210,14 +210,14 @@ Ou seja:
 
 # 1️. Clonar o Repositório
 ```
-git clone https://github.com/seu-repositorio/finantech.git
+git clone https://github.com/diegosojr/back-end-finantech
 ```
 
 ou baixar o projeto e abrir no VS Code.
 
 # 2️. Acessar a pasta do projeto
 ```
-cd back-end-finantech
+cd "back-end-finantech"
 ```
 
 # 3️. Instalar as dependências
